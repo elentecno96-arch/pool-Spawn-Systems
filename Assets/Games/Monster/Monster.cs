@@ -4,25 +4,39 @@ using UnityEngine;
 using Games.Interface;
 using Games.Monster.Strategy;
 using Unity.VisualScripting;
+using Games.Monster.State;
 
 namespace Games.Monster
 {
     public abstract class Monster : MonoBehaviour, IHittable
     {
-        protected MoveStrategy moveStrategy;
-        protected AttackStrategy attackStrategy;
-        protected DieStrategy dieStrategy;
+        public MoveStrategy moveStrategy;
+        public AttackStrategy attackStrategy;
+        public DieStrategy dieStrategy;
+
+        public MonsterStateMachine stateMachine;
 
         int maxHp;
         int currentHp;
-        float moveSpeed;
+        public float moveSpeed;
         float damage;
         float atkSpeed;
         bool isDead;
 
         private void Start()
         {
+            Init();
             isDead = false;
+
+            stateMachine = new MonsterStateMachine(this);
+            stateMachine.AddState("Idle", new IdleState(this));
+            stateMachine.AddState("Move", new MoveState(this));
+            stateMachine.AddState("Attack", new AttackState(this));
+            stateMachine.AddState("Die", new DieState(this));
+        }
+        void Update()
+        {
+            stateMachine.UpdateState();
         }
         protected abstract void Init();
         public void Hit(float damage)
@@ -39,7 +53,7 @@ namespace Games.Monster
         void Die()
         {
             isDead = true;
-            Destroy(gameObject);
+            dieStrategy.Die(this.gameObject);
         }
     }
 }
