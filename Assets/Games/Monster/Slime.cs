@@ -1,3 +1,4 @@
+using Games.Monster.State;
 using Games.Monster.Strategy;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,13 +9,23 @@ namespace Games.Monster
 
     public class Slime : Monster
     {
-        public GameObject projectilePrefab;
-        public Transform firePoint;
         protected override void Init()
         {
+            stateMachine = new MonsterStateMachine(this);
+            stateMachine.AddState("Idle", new IdleState(this));
+            stateMachine.AddState("Move", new MoveState(this));
+            stateMachine.AddState("Attack", new AttackState(this));
+            stateMachine.AddState("Die", new DieState(this));
+
             moveStrategy = new Strategy.Move.NormalMove();
             attackStrategy = new Strategy.Attack.ProjectileAttack();
             dieStrategy = new Strategy.Die.NormalDie();
+
+            stateMachine.ChangeState("Idle");
+        }
+        void Update()
+        {
+            stateMachine.UpdateState();
         }
     }
 }

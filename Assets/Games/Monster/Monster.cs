@@ -27,12 +27,6 @@ namespace Games.Monster
         {
             Init();
             isDead = false;
-
-            stateMachine = new MonsterStateMachine(this);
-            stateMachine.AddState("Idle", new IdleState(this));
-            stateMachine.AddState("Move", new MoveState(this));
-            stateMachine.AddState("Attack", new AttackState(this));
-            stateMachine.AddState("Die", new DieState(this));
         }
         void Update()
         {

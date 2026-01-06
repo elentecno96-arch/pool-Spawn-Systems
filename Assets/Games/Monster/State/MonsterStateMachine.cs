@@ -29,7 +29,7 @@ namespace Games.Monster.State
             {
                 return;
             }
-            if (statesDic != null)
+            if (monsterState != null)
             {
                 monsterState.ExitState();
             }

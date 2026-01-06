@@ -1,4 +1,5 @@
 using Games.Interface;
+using Games.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,14 @@ namespace Games.Prefabs.Projectile
             {
                 rb.velocity = transform.forward * speed;
             }
-            Destroy(gameObject, lifeTime);
+            StartCoroutine(ReturnAfterTime());
+        }
+        IEnumerator ReturnAfterTime()
+        {
+            yield return new WaitForSeconds(lifeTime);
+            if (rb != null) rb.velocity = Vector3.zero;
+
+            PoolManager.instance.projectilePool.ReturnProjectile(this.gameObject);
         }
     }
 }
