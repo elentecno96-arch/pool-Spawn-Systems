@@ -1,3 +1,4 @@
+using Games.Interface;
 using Games.Monster.State;
 using Games.Monster.Strategy;
 using System.Collections;
@@ -22,10 +23,6 @@ namespace Games.Monster
             dieStrategy = new Strategy.Die.NormalDie();
 
             stateMachine.ChangeState("Idle");
-        }
-        void Update()
-        {
-            stateMachine.UpdateState();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Games.Monster.Strategy.Die;
 
 namespace Games.Monster.State
 {
@@ -12,7 +13,7 @@ namespace Games.Monster.State
 
         public override void UpdateState()
         {
-            mon.dieStrategy.Die(mon.gameObject);
+            mon.dieStrategy.Execute(mon);
         }
     }
 }

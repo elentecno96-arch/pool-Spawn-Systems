@@ -10,9 +10,9 @@ namespace Games.Monster
 {
     public abstract class Monster : MonoBehaviour, IHittable
     {
-        public MoveStrategy moveStrategy;
-        public AttackStrategy attackStrategy;
-        public DieStrategy dieStrategy;
+        public IMonsterStrategy moveStrategy;
+        public IMonsterStrategy attackStrategy;
+        public IMonsterStrategy dieStrategy;
 
         public MonsterStateMachine stateMachine;
 
@@ -47,7 +47,7 @@ namespace Games.Monster
         void Die()
         {
             isDead = true;
-            dieStrategy.Die(this.gameObject);
+            stateMachine.ChangeState("Die");
         }
     }
 }

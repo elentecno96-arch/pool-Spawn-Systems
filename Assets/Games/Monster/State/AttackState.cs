@@ -34,7 +34,7 @@ namespace Games.Monster.State
 
                 if (Time.time >= lastAttackTime + attackCooldown)
                 {
-                    mon.attackStrategy.Attack(mon.transform);
+                    mon.attackStrategy.Execute(mon);
                     lastAttackTime = Time.time;
                     Debug.Log("공격 전략 실행!");
                 }

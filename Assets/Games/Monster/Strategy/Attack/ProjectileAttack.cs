@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Games.Pool;
+using Games.Interface;
 
 namespace Games.Monster.Strategy.Attack
 {
-    public class ProjectileAttack : AttackStrategy
+    public class ProjectileAttack : IMonsterStrategy
     {
-        Monster monster;
-        public override void Attack(Transform transform)
+        public virtual void Execute(Monster monster)
         {
-            PoolManager.instance.projectilePool.GetProjectile(transform.position, transform.rotation);
+            PoolManager.instance.projectilePool.GetProjectile(monster.transform.position, monster.transform.rotation);
         }
     }
 }
