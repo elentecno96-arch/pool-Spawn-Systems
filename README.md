@@ -17,3 +17,7 @@
 4. Prototype
 적용 클래스 : IClone<T>, SlimePieces
 설명 : 객체 생성 로직을 객체 스스로 (Clone())에 담당하게 합니다
+
++5. 상태 패턴
+MonsterStateMachine을 통해 각 몬스터의 상태의 흐름을 정의
+각 상태에 전략패턴을 연결
