@@ -7,9 +7,9 @@ using Games.Interface;
 
 namespace Games.Monster.Strategy.Attack
 {
-    public class ProjectileAttack : IMonsterStrategy
+    public class ProjectileAttack : IMonsterAttackStrategy
     {
-        public virtual void Execute(Monster monster)
+        public virtual void Attack(Monster monster)
         {
             PoolManager.instance.projectilePool.GetProjectile(monster.transform.position, monster.transform.rotation);
         }

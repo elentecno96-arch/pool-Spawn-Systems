@@ -5,9 +5,9 @@ using Games.Monster;
 
 namespace Games.Interface
 {
-    public interface IMonsterMoveStrategy
+    public interface IMonsterAttackStrategy
     {
-        void Move(Games.Monster.Monster monster);
+        void Attack(Games.Monster.Monster monster);
     }
 }
 

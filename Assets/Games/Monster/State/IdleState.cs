@@ -19,7 +19,7 @@ namespace Games.Monster.State
                 if (hit.CompareTag("Player"))
                 {
                     Debug.Log("플레이어를 찾음");
-                    mon.stateMachine.ChangeState("Move");
+                    //mon.stateMachine.ChangeState("Move");
                     break;
                 }
             }

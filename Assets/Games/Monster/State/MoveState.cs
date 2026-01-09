@@ -16,14 +16,14 @@ namespace Games.Monster.State
 
         public override void UpdateState()
         {
-            mon.moveStrategy.Execute(mon);
+            mon.moveStrategy.Move(mon);
 
             Collider[] colliders = Physics.OverlapSphere(mon.transform.position, detectRange);
             foreach (var hit in colliders)
             {
                 if (hit.CompareTag("Player"))
                 {
-                    mon.stateMachine.ChangeState("Attack");
+                    //mon.stateMachine.ChangeState("Attack");
                     break;
                 }
             }

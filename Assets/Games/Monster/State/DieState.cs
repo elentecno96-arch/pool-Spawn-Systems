@@ -13,7 +13,7 @@ namespace Games.Monster.State
 
         public override void UpdateState()
         {
-            mon.dieStrategy.Execute(mon);
+            mon.dieStrategy.Die(mon);
         }
     }
 }

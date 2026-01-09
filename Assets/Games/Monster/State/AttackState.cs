@@ -34,14 +34,14 @@ namespace Games.Monster.State
 
                 if (Time.time >= lastAttackTime + attackCooldown)
                 {
-                    mon.attackStrategy.Execute(mon);
+                    mon.attackStrategy.Attack(mon);
                     lastAttackTime = Time.time;
                     Debug.Log("공격 전략 실행!");
                 }
             }
             else
             {
-                mon.stateMachine.ChangeState("Move");
+                //mon.stateMachine.ChangeState("Move");
             }
         }
     }
