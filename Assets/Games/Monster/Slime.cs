@@ -12,16 +12,17 @@ namespace Games.Monster
     {
         protected override void Init()
         {
-            //stateMachine = new MonsterStateMachine(this);
-            //stateMachine.AddState("Idle", new IdleState(this));
-            //stateMachine.AddState("Move", new MoveState(this));
-            //stateMachine.AddState("Attack", new AttackState(this));
-            //stateMachine.AddState("Die", new DieState(this));
+            stateMachine = new MonsterStateMachine(this);
+            stateMachine.AddState("Idle", new IdleState(this));
+            stateMachine.AddState("Move", new MoveState(this));
+            stateMachine.AddState("Attack", new AttackState(this));
+            stateMachine.AddState("Die", new DieState(this));
 
             moveStrategy = new Strategy.Move.NormalMove();
             attackStrategy = new Strategy.Attack.ProjectileAttack();
-            dieStrategy = new Strategy.Die.NormalDie();
-            //stateMachine.ChangeState("Idle");
+            dieStrategy = new Strategy.Die.MonsterDie();
+
+            stateMachine.ChangeState("Idle");
         }
     }
 }

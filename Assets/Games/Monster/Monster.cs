@@ -1,4 +1,3 @@
-using Game.Interface;
 using Games.Interface;
 using Games.Monster.State;
 using Games.Monster.Strategy;
@@ -11,16 +10,16 @@ namespace Games.Monster
 {
     public abstract class Monster : MonoBehaviour, IHittable
     {
-        public IMonsterMoveStrategy moveStrategy;
-        public IMonsterAttackStrategy attackStrategy;
-        public IMonsterDieStrategy dieStrategy;
+        public IMoveStrategy moveStrategy;
+        public IAttackStrategy attackStrategy;
+        public IDieStrategy dieStrategy;
 
-        //public MonsterStateMachine stateMachine;
+        public MonsterStateMachine stateMachine;
 
         int maxHp;
         int currentHp;
         public float moveSpeed;
-        float damage;
+        public float damage;
         float atkSpeed;
         bool isDead;
 
@@ -31,9 +30,7 @@ namespace Games.Monster
         }
         void Update()
         {
-            //stateMachine.UpdateState();
-            Attack(); 
-            Move();
+            stateMachine.UpdateState();
         }
         protected abstract void Init();
         public void Hit(float damage)
@@ -47,19 +44,12 @@ namespace Games.Monster
                 Die();
             }
         }
-        void Attack()
-        {
-            attackStrategy?.Attack(this);
-        }
-        void Move()
-        {
-            moveStrategy?.Move(this);
-        }
         void Die()
         {
+            if (isDead) return;
             isDead = true;
-            dieStrategy?.Die(this);
-            //stateMachine.ChangeState("Die");
+
+            stateMachine.ChangeState("Die");
         }
     }
 }

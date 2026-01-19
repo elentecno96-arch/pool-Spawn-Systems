@@ -1,15 +1,17 @@
 using Games.Interface;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace Games.Monster.Strategy.Move
 {
-    public class NormalMove : IMonsterMoveStrategy
+    public class NormalMove : IMoveStrategy
     {
-        public virtual void Move(Monster monster)
+        public void Move(Transform transform, float speed)
         {
-            monster.transform.Translate(Vector3.forward * monster.moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
     }
 }

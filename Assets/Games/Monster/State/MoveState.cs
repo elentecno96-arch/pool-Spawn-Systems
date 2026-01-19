@@ -16,7 +16,7 @@ namespace Games.Monster.State
 
         public override void UpdateState()
         {
-            mon.moveStrategy.Move(mon);
+            mon.moveStrategy.Move(mon.transform,mon.moveSpeed);
 
             Collider[] colliders = Physics.OverlapSphere(mon.transform.position, detectRange);
             foreach (var hit in colliders)

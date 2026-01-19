@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Games.Interface
 {
-    public interface IHittable
+    public interface IDieStrategy
     {
-         void Hit(float damage);
+        void Die(GameObject owner);
     }
 }

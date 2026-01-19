@@ -1,17 +1,18 @@
+using Games.Interface;
 using Games.Manager;
+using Games.Pool;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Games.Pool;
-using Games.Interface;
 
 namespace Games.Monster.Strategy.Attack
 {
-    public class ProjectileAttack : IMonsterAttackStrategy
+    public class ProjectileAttack : IAttackStrategy
     {
-        public virtual void Attack(Monster monster)
+        public void Attack(Transform firePoint, float damage)
         {
-            PoolManager.instance.projectilePool.GetProjectile(monster.transform.position, monster.transform.rotation);
+            PoolManager.instance.projectilePool.GetProjectile(firePoint.position, firePoint.rotation);
         }
     }
 }
